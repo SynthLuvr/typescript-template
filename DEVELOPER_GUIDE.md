@@ -169,12 +169,12 @@ This runs four steps in order:
 
 `pnpm lint` runs four checks in sequence:
 
-| Step             | Tool           | What it checks                                                    |
-|------------------|----------------|-------------------------------------------------------------------|
-| `lint:biome`     | `biome format` | Format violations (no writes)                                     |
-| `lint:oxlint`    | `oxlint`       | Type-aware rules: no-floating-promises, return-await, unused-vars |
-| `lint:exports`   | ast-grep       | No inline `export` keywords                                       |
-| `lint:functions` | ast-grep       | No `function` declarations                                        |
+| Step             | Tool          | What it checks                                                    |
+|------------------|---------------|-------------------------------------------------------------------|
+| `lint:biome`     | `biome check` | Format, lint, and import-order violations (no writes)             |
+| `lint:oxlint`    | `oxlint`      | Type-aware rules: no-floating-promises, return-await, unused-vars |
+| `lint:exports`   | ast-grep      | No inline `export` keywords                                       |
+| `lint:functions` | ast-grep      | No `function` declarations                                        |
 
 ### oxlint Rules
 

@@ -49,7 +49,7 @@ The `lint` script runs all linters in sequence via `npm-run-all`:
 | Script                | Description                            |
 |-----------------------|----------------------------------------|
 | `pnpm lint`           | Run all lint steps                     |
-| `pnpm lint:biome`     | Biome format check (no writes)         |
+| `pnpm lint:biome`     | Biome check: format + lint + imports   |
 | `pnpm lint:oxlint`    | oxlint with type-aware rules           |
 | `pnpm lint:exports`   | ast-grep: no inline exports            |
 | `pnpm lint:functions` | ast-grep: no function declarations     |
