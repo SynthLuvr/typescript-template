@@ -64,33 +64,33 @@ id: drop-for-single-stmt-braces
 language: TypeScript
 rule:
   pattern: |
-    for ($INIT; $COND; $UPDATE) {
+    for (let $X = $V; $COND; $UPDATE) {
       $STMT
     }
 fix: |
-  for ($INIT; $COND; $UPDATE)
+  for (let $X = $V; $COND; $UPDATE)
     $STMT
 ---
 id: drop-for-of-single-stmt-braces
 language: TypeScript
 rule:
   pattern: |
-    for ($LEFT of $RIGHT) {
+    for (const $X of $RIGHT) {
       $STMT
     }
 fix: |
-  for ($LEFT of $RIGHT)
+  for (const $X of $RIGHT)
     $STMT
 ---
 id: drop-for-in-single-stmt-braces
 language: TypeScript
 rule:
   pattern: |
-    for ($LEFT in $RIGHT) {
+    for (const $X in $RIGHT) {
       $STMT
     }
 fix: |
-  for ($LEFT in $RIGHT)
+  for (const $X in $RIGHT)
     $STMT
 ---
 id: drop-do-while-single-stmt-braces
