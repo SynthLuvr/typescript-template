@@ -46,14 +46,14 @@ pnpm test     # run unit tests
 
 The `lint` script runs all linters in sequence via `npm-run-all`:
 
-| Script                | Description                            |
-|-----------------------|----------------------------------------|
-| `pnpm lint`           | Run all lint steps                     |
-| `pnpm lint:biome`     | Biome format check (no writes)         |
-| `pnpm lint:oxlint`    | oxlint with type-aware rules           |
-| `pnpm lint:exports`   | ast-grep: no inline exports            |
-| `pnpm lint:functions` | ast-grep: no function declarations     |
-| `pnpm lint:md`        | pandoc: Markdown must be GFM-formatted |
+| Script                | Description                               |
+|-----------------------|-------------------------------------------|
+| `pnpm lint`           | Run all lint steps                        |
+| `pnpm lint:biome`     | Biome check: format + lint + import order |
+| `pnpm lint:oxlint`    | oxlint with type-aware rules              |
+| `pnpm lint:exports`   | ast-grep: no inline exports               |
+| `pnpm lint:functions` | ast-grep: no function declarations        |
+| `pnpm lint:md`        | pandoc: Markdown must be GFM-formatted    |
 
 ### Format
 
