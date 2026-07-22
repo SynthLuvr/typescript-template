@@ -72,8 +72,7 @@ All three must pass with zero errors.
     │       └── strip-braces.yml              # strip single-statement braces
     ├── .github/
     │   └── workflows/
-    │       ├── ci.yml                        # build → lint → test on PR
-    │       └── copilot-setup-steps.yml       # Copilot agent environment
+    │       └── ci.yml                        # build → lint → test on PR
     ├── src/
     │   ├── index.ts                          # Trivial module (replace with your code)
     │   └── tests/
@@ -223,16 +222,6 @@ Runs on every pull request:
 4.  **Build** (`pnpm build`)
 5.  **Lint** (`pnpm lint`)
 6.  **Test** (`pnpm test`)
-
-### `copilot-setup-steps.yml`
-
-Provisions the environment for GitHub Copilot’s coding agent:
-
-1.  **Checkout** code
-2.  **Setup** pnpm 11.8.0 + Node 24
-3.  **Install** dependencies (`--frozen-lockfile`)
-
-Runs when the workflow file itself changes, or via manual dispatch.
 
 ## 10. TypeScript Configuration
 
