@@ -93,7 +93,7 @@ These are **enforced** by the toolchain, not just preferences:
 ## Project Structure
 
     ├── .ast-grep/rules/       # Structural lint/format rules
-    ├── .github/workflows/     # CI + Copilot setup
+    ├── .github/workflows/     # CI
     ├── scripts/               # Tooling scripts (pandoc-md)
     ├── src/
     │   ├── index.ts           # Trivial module (replace with your code)
