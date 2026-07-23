@@ -1,13 +1,10 @@
 id: no-function-declaration
 language: TypeScript
 rule:
-  # Flag function declarations, but skip the implementation of an
-  # overloaded function. Overload signatures are `function_signature`
-  # nodes (no body), so they never match this rule; the implementation is
-  # a `function_declaration` that immediately follows at least one
-  # `function_signature` sibling. TypeScript forbids a dangling signature
-  # without a matching implementation (TS7010), so a `function_declaration`
-  # that follows an unrelated signature cannot exist in valid code.
+  # Skip overload implementations — a `function_declaration` immediately
+  # following a `function_signature` sibling. Signatures are bodyless
+  # `function_signature` nodes (never matched here), and TS7010 guarantees
+  # each signature set ends in exactly one implementation.
   all:
     - kind: function_declaration
     - not:
