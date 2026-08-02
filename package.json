@@ -3,7 +3,7 @@
   "private": true,
   "description": "A TypeScript project template with a complete build, format, lint, and test toolchain",
   "type": "module",
-  "packageManager": "pnpm@11.15.0",
+  "packageManager": "pnpm@11.18.0",
   "engines": {
     "node": "==26"
   },
@@ -28,14 +28,14 @@
     "test:watch": "vitest"
   },
   "devDependencies": {
-    "@ast-grep/cli": "^0.44.1",
-    "@ast-grep/cli-linux-x64-gnu": "^0.44.1",
-    "@biomejs/biome": "^2.5.4",
-    "@types/node": "^26.1.1",
+    "@ast-grep/cli": "^0.45.0",
+    "@ast-grep/cli-linux-x64-gnu": "^0.45.0",
+    "@biomejs/biome": "^2.5.6",
+    "@types/node": "^26.1.2",
     "convert-to-arrow": "^1.1.4",
-    "npm-run-all2": "^9.0.2",
-    "oxlint": "^1.74.0",
-    "oxlint-tsgolint": "^0.25.0",
+    "npm-run-all2": "^9.0.3",
+    "oxlint": "^1.76.0",
+    "oxlint-tsgolint": "^7.0.2001",
     "tsx": "^4.23.1",
     "typescript": "^7.0.2",
     "vitest": "^4.1.10"
