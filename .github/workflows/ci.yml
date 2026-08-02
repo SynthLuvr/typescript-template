@@ -22,10 +22,10 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Install pandoc (pinned for Markdown lint/format)
+      - name: Install pandoc (system package; Markdown lint/format)
         run: |
-          wget -q https://github.com/jgm/pandoc/releases/download/3.10.1/pandoc-3.10.1-1-amd64.deb
-          sudo dpkg -i pandoc-3.10.1-1-amd64.deb
+          sudo apt-get update
+          sudo apt-get install -y pandoc
           pandoc --version | head -1
 
       - name: Lint
