@@ -1,16 +1,14 @@
 #!/usr/bin/env tsx
 /**
- * Peer dependency lint check.
+ * Fails `pnpm lint` when the installed tree has unmet or missing peer
+ * dependencies.
  *
  *   pnpm lint:peer-deps -> tsx scripts/peer-deps.mts
  *
- * Asserts that the dependency tree produced by `pnpm install` has no unmet or
- * missing peer dependencies. Delegates to `pnpm peers check`, which reads the
- * lockfile and exits non-zero when issues are found. We use `peers check`
- * rather than `install --strict-peer-dependencies` because a frozen lockfile
- * is not re-resolved during install, so the strict flag silently misses
- * pre-existing peer conflicts. Throws an error — and so fails `pnpm lint` —
- * if any peer dependency issues exist.
+ * Uses `pnpm peers check` (which inspects the lockfile directly) rather than
+ * `install --strict-peer-dependencies`: a frozen lockfile is not re-resolved
+ * during install, so the strict flag silently misses pre-existing peer
+ * conflicts.
  */
 import { spawnSync } from "node:child_process";
 import { dirname, join } from "node:path";
