@@ -6,18 +6,18 @@ point for new projects.
 
 ## Tech Stack
 
-| Tool                                                             | Purpose                            |
-|------------------------------------------------------------------|------------------------------------|
-| [pnpm](https://pnpm.io)                                          | Package manager                    |
-| [TypeScript](https://www.typescriptlang.org)                     | Type checking (`tsc --noEmit`)     |
-| [Biome](https://biomejs.dev)                                     | Primary formatter and linter       |
-| [oxlint](https://oxc.rs/docs/guide/usage/linter)                 | Secondary type-aware linter        |
-| [ast-grep](https://ast-grep.github.io)                           | Structural lint/format rules       |
+| Tool | Purpose |
+|----|----|
+| [pnpm](https://pnpm.io) | Package manager |
+| [TypeScript](https://www.typescriptlang.org) | Type checking (`tsc --noEmit`) |
+| [Biome](https://biomejs.dev) | Primary formatter and linter |
+| [oxlint](https://oxc.rs/docs/guide/usage/linter) | Secondary type-aware linter |
+| [ast-grep](https://ast-grep.github.io) | Structural lint/format rules |
 | [convert-to-arrow](https://github.com/chimurai/convert-to-arrow) | Codemod: `function` → arrow consts |
-| [Vitest](https://vitest.dev)                                     | Test runner (unit + integration)   |
-| [tsx](https://github.com/privatenumber/tsx)                      | Dev-time TypeScript execution      |
-| [npm-run-all2](https://github.com/bcomnes/npm-run-all2)          | Orchestrates multi-step scripts    |
-| [pandoc](https://pandoc.org)                                     | Markdown formatter (GFM)           |
+| [Vitest](https://vitest.dev) | Test runner (unit + integration) |
+| [tsx](https://github.com/privatenumber/tsx) | Dev-time TypeScript execution |
+| [npm-run-all2](https://github.com/bcomnes/npm-run-all2) | Orchestrates multi-step scripts |
+| [pandoc](https://pandoc.org) | Markdown formatter (GFM) |
 
 ## Prerequisites
 
@@ -59,14 +59,14 @@ The `lint` script runs all linters in sequence via `npm-run-all`:
 
 The `format` script runs all formatters in sequence:
 
-| Script               | Description                                             |
-|----------------------|---------------------------------------------------------|
-| `pnpm format`        | Run all format steps                                    |
+| Script | Description |
+|----|----|
+| `pnpm format` | Run all format steps |
 | `pnpm format:arrows` | `convert-to-arrow` — rewrite `function` to arrow consts |
-| `pnpm format:braces` | ast-grep strip single-statement braces                  |
-| `pnpm format:biome`  | Biome format with auto-fix                              |
-| `pnpm format:check`  | Biome check (lint + format auto-fix)                    |
-| `pnpm format:md`     | pandoc: reformat Markdown to canonical GFM              |
+| `pnpm format:braces` | ast-grep strip single-statement braces |
+| `pnpm format:biome` | Biome format with auto-fix |
+| `pnpm format:check` | Biome check (lint + format auto-fix) |
+| `pnpm format:md` | pandoc: reformat Markdown to canonical GFM |
 
 ### Test
 
