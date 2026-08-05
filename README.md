@@ -15,6 +15,8 @@ point for new projects.
 | [ast-grep](https://ast-grep.github.io)                           | Structural lint/format rules       |
 | [convert-to-arrow](https://github.com/chimurai/convert-to-arrow) | Codemod: `function` → arrow consts |
 | [Vitest](https://vitest.dev)                                     | Test runner (unit + integration)   |
+| [@vitest/coverage-v8](https://vitest.dev/guide/coverage)         | Coverage provider + 80% threshold  |
+| [jscpd](https://github.com/kucherenko/jscpd)                     | Code-duplication detection         |
 | [tsx](https://github.com/privatenumber/tsx)                      | Dev-time TypeScript execution      |
 | [npm-run-all2](https://github.com/bcomnes/npm-run-all2)          | Orchestrates multi-step scripts    |
 | [pandoc](https://pandoc.org)                                     | Markdown formatter (GFM)           |
@@ -31,7 +33,7 @@ point for new projects.
 ``` bash
 pnpm install
 pnpm build    # type-check with tsc
-pnpm test     # run unit tests
+pnpm test     # run unit tests (coverage gated)
 ```
 
 ## Scripts
@@ -46,15 +48,17 @@ pnpm test     # run unit tests
 
 The `lint` script runs all linters in sequence via `npm-run-all`:
 
-| Script                | Description                               |
-|-----------------------|-------------------------------------------|
-| `pnpm lint`           | Run all lint steps                        |
-| `pnpm lint:biome`     | Biome check: format + lint + import order |
-| `pnpm lint:oxlint`    | oxlint with type-aware rules              |
-| `pnpm lint:exports`   | ast-grep: no inline exports               |
-| `pnpm lint:functions` | ast-grep: no function declarations        |
-| `pnpm lint:md`        | pandoc: Markdown must be GFM-formatted    |
-| `pnpm lint:peer-deps` | pnpm: no peer dependency conflicts        |
+| Script                 | Description                               |
+|------------------------|-------------------------------------------|
+| `pnpm lint`            | Run all lint steps                        |
+| `pnpm lint:biome`      | Biome check: format + lint + import order |
+| `pnpm lint:oxlint`     | oxlint with type-aware rules              |
+| `pnpm lint:exports`    | ast-grep: no inline exports               |
+| `pnpm lint:functions`  | ast-grep: no function declarations        |
+| `pnpm lint:md`         | pandoc: Markdown must be GFM-formatted    |
+| `pnpm lint:peer-deps`  | pnpm: no peer dependency conflicts        |
+| `pnpm lint:audit`      | pnpm audit: production dependency vulns   |
+| `pnpm lint:duplicates` | jscpd: code duplication (5% threshold)    |
 
 ### Format
 
@@ -71,10 +75,14 @@ The `format` script runs all formatters in sequence:
 
 ### Test
 
-| Script            | Description    |
-|-------------------|----------------|
-| `pnpm test`       | Run unit tests |
-| `pnpm test:watch` | Watch mode     |
+| Script            | Description                                  |
+|-------------------|----------------------------------------------|
+| `pnpm test`       | Run unit tests with coverage (80% threshold) |
+| `pnpm test:watch` | Watch mode                                   |
+
+`pnpm test` enforces an 80% coverage threshold (statements, branches,
+functions, lines) via `@vitest/coverage-v8`; `pnpm test:watch` runs
+without coverage.
 
 ## Coding Conventions
 
