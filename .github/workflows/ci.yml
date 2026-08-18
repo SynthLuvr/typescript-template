@@ -42,8 +42,9 @@ jobs:
             -Uri https://github.com/jgm/pandoc/releases/download/3.10.2/pandoc-3.10.2-windows-x86_64.zip `
             -OutFile $zip
           Expand-Archive $zip -DestinationPath "$env:RUNNER_TEMP\pandoc"
-          Add-Content $env:GITHUB_PATH "$env:RUNNER_TEMP\pandoc\pandoc-3.10.2-windows-x86_64"
-          pandoc --version | Select-Object -First 1
+          Add-Content $env:GITHUB_PATH "$env:RUNNER_TEMP\pandoc\pandoc-3.10.2"
+          & "$env:RUNNER_TEMP\pandoc\pandoc-3.10.2\pandoc.exe" --version |
+            Select-Object -First 1
 
       - name: Lint
         run: pnpm lint
