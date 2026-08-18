@@ -29,7 +29,8 @@ point for new projects.
   `pnpm format:md`
 
 The toolchain runs on Linux, macOS, and Windows; line endings are
-normalized to LF via `.gitattributes`.
+normalized to LF via `.gitattributes`, and the Markdown scripts pass
+`--eol=lf` to pandoc so its output stays LF on Windows as well.
 
 ## Quick Start
 

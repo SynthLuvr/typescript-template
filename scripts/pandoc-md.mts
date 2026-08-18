@@ -6,9 +6,12 @@
  *   pnpm format:md -> tsx scripts/pandoc-md.mts --write   (overwrites each file)
  *
  * Every tracked `*.md` file must be byte-for-byte identical to the output of
- * `pandoc <name>.md -t gfm`, making pandoc the single source of truth for
- * Markdown formatting. Requires `pandoc` on PATH (installed in CI; see
- * .github/workflows/ci.yml and the README "Prerequisites" note).
+ * `pandoc <name>.md --eol=lf -t gfm`, making pandoc the single source of truth
+ * for Markdown formatting. `--eol=lf` pins the output to Unix line endings on
+ * every platform (pandoc's default `native` EOL is CRLF on Windows, which
+ * would make the check fail and format:md rewrite files with CRLF).
+ * Requires `pandoc` on PATH (installed in CI; see .github/workflows/ci.yml
+ * and the README "Prerequisites" note).
  */
 import { spawnSync } from "node:child_process";
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -26,7 +29,7 @@ const findMarkdown = (): string[] =>
     .sort();
 
 const pandocFormat = (file: string): string => {
-  const result = spawnSync("pandoc", [file, "-t", "gfm"], {
+  const result = spawnSync("pandoc", ["--eol=lf", file, "-t", "gfm"], {
     cwd: ROOT,
     encoding: "utf8",
   });
