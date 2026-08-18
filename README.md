@@ -23,10 +23,13 @@ point for new projects.
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org) 24 and [pnpm](https://pnpm.io) (enforced
+- [Node.js](https://nodejs.org) 26 and [pnpm](https://pnpm.io) (enforced
   via `engines`)
 - [pandoc](https://pandoc.org) ≥ 3.1 — required by `pnpm lint:md` /
   `pnpm format:md`
+
+The toolchain runs on Linux, macOS, and Windows; line endings are
+normalized to LF via `.gitattributes`.
 
 ## Quick Start
 

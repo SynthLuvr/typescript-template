@@ -1,0 +1,5 @@
+# Normalize all text files to LF in the repo and on checkout.
+# Matches biome "lineEnding": "lf" and the pandoc byte-for-byte
+# markdown checks; Git for Windows defaults to CRLF on checkout
+# (core.autocrlf=true) which broke `pnpm lint` on fresh clones.
+* text=auto eol=lf
