@@ -5,10 +5,12 @@
  *
  *   pnpm lint:peer-deps -> tsx scripts/peer-deps.mts
  *
- * pnpm is spawned as `node <npm_execpath>` rather than by bare name: the `pnpm`
- * on PATH is a `.cmd` shim on Windows, which needs `shell: true` to spawn and
- * is blocked outright by AppLocker on managed hosts. `npm_execpath` points at
- * pnpm's own JS entry point, so neither a shim nor a shell is involved.
+ * pnpm is spawned via `npm_execpath` rather than by bare name: the `pnpm` on
+ * PATH is a `.cmd` shim on Windows, which needs `shell: true` to spawn and is
+ * blocked outright by AppLocker on managed hosts. `npm_execpath` is pnpm's
+ * real entry point — the JS file when pnpm is installed via npm/corepack (run
+ * under node), or the native executable itself for standalone (`@pnpm/exe`)
+ * installs — so neither a shim nor a shell is involved.
  *
  * Uses `pnpm peers check` (which inspects the lockfile directly) rather than
  * `install --strict-peer-dependencies`: a frozen lockfile is not re-resolved
@@ -28,10 +30,17 @@ const checkPeerDependencies = (): void => {
       "npm_execpath is unset — run this via `pnpm lint:peer-deps`.",
     );
 
-  const result = spawnSync(process.execPath, [pnpmEntry, "peers", "check"], {
-    cwd: ROOT,
-    encoding: "utf8",
-  });
+  // `node <entry>` only works when the entry is JS; the standalone
+  // executable is spawned directly (no shell, no shim, on any platform).
+  const isJs = /\.(?:js|cjs|mjs)$/.test(pnpmEntry);
+  const result = spawnSync(
+    isJs ? process.execPath : pnpmEntry,
+    isJs ? [pnpmEntry, "peers", "check"] : ["peers", "check"],
+    {
+      cwd: ROOT,
+      encoding: "utf8",
+    },
+  );
 
   if (result.error) throw result.error;
 
