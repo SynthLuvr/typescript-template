@@ -24,13 +24,37 @@ point for new projects.
 ## Prerequisites
 
 - [Node.js](https://nodejs.org) 26 and [pnpm](https://pnpm.io) (enforced
-  via `engines`)
+  via `engines`; `.node-version` pins the major for fnm/nvm/asdf)
 - [pandoc](https://pandoc.org) ≥ 3.10 — required by `pnpm lint:md` /
   `pnpm format:md`
+- `bash` on `PATH` — pnpm runs scripts through it (see [Windows
+  notes](#windows-notes)); Git for Windows provides it
 
 The toolchain runs on Linux, macOS, and Windows; line endings are
 normalized to LF via `.gitattributes`, and pandoc is invoked with
 `--eol=lf` so its output stays LF on Windows too.
+
+### Windows notes
+
+On Windows, pnpm installs three shims per binary in `node_modules/.bin`:
+a POSIX shell script, a `.CMD` batch file, and a `.ps1`. Managed Windows
+hosts commonly enforce an AppLocker script policy that blocks `.cmd` and
+`.ps1` files under the user profile, which takes out every `.CMD` shim —
+and `cmd.exe` is the shell pnpm reaches for by default. Three settings
+keep the toolchain off that path:
+
+- `scriptShell: bash` in `pnpm-workspace.yaml` — scripts run under bash,
+  which resolves the extensionless POSIX shims instead of the `.CMD`
+  ones. On Linux and macOS this is what already happens.
+- Scripts call binaries by bare name (`biome check .`) rather than
+  `pnpm biome check .`. pnpm already puts `node_modules/.bin` on `PATH`;
+  routing back through `pnpm exec` re-resolves the binary to its `.CMD`
+  shim, bypassing the shell entirely.
+- `scripts/oxlint.mts` and `scripts/peer-deps.mts` resolve tsgolint and
+  pnpm to real paths, so neither a shim nor a shell gets involved.
+
+pnpm itself is a shim too, so on such a host drive the toolchain from
+Git Bash rather than PowerShell.
 
 ## Quick Start
 
@@ -56,7 +80,7 @@ The `lint` script runs all linters in sequence via `npm-run-all`:
 |------------------------|-------------------------------------------|
 | `pnpm lint`            | Run all lint steps                        |
 | `pnpm lint:biome`      | Biome check: format + lint + import order |
-| `pnpm lint:oxlint`     | oxlint with type-aware rules              |
+| `pnpm lint:oxlint`     | oxlint with type-aware rules (tsgolint)   |
 | `pnpm lint:exports`    | ast-grep: no inline exports               |
 | `pnpm lint:functions`  | ast-grep: no function declarations        |
 | `pnpm lint:md`         | pandoc: Markdown must be GFM-formatted    |
@@ -107,11 +131,16 @@ These are **enforced** by the toolchain, not just preferences:
 
     ├── .ast-grep/rules/       # Structural lint/format rules
     ├── .github/workflows/     # CI
-    ├── scripts/               # Tooling scripts (pandoc-md)
+    ├── scripts/
+    │   ├── oxlint.mts         # oxlint runner (resolves tsgolint)
+    │   ├── pandoc-md.mts      # Markdown lint/format via pandoc
+    │   └── peer-deps.mts      # Peer dependency check
     ├── src/
     │   ├── index.ts           # Trivial module (replace with your code)
     │   └── tests/             # Unit and integration tests
     ├── biome.json             # Biome formatter + linter config
+    ├── .node-version          # Node major, for fnm/nvm/asdf
     ├── .oxlintrc.json         # oxlint type-aware rules
+    ├── pnpm-workspace.yaml    # pnpm settings (incl. scriptShell)
     ├── tsconfig.json          # TypeScript config
     └── vitest.config.ts       # Test config

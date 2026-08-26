@@ -5,6 +5,11 @@
  *
  *   pnpm lint:peer-deps -> tsx scripts/peer-deps.mts
  *
+ * pnpm is spawned as `node <npm_execpath>` rather than by bare name: the `pnpm`
+ * on PATH is a `.cmd` shim on Windows, which needs `shell: true` to spawn and
+ * is blocked outright by AppLocker on managed hosts. `npm_execpath` points at
+ * pnpm's own JS entry point, so neither a shim nor a shell is involved.
+ *
  * Uses `pnpm peers check` (which inspects the lockfile directly) rather than
  * `install --strict-peer-dependencies`: a frozen lockfile is not re-resolved
  * during install, so the strict flag silently misses pre-existing peer
@@ -17,12 +22,15 @@ import { fileURLToPath } from "node:url";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
 const checkPeerDependencies = (): void => {
-  // On Windows, pnpm is a .cmd shim; Node refuses to spawn .cmd/.bat
-  // without a shell (CVE-2024-27980).
-  const result = spawnSync("pnpm", ["peers", "check"], {
+  const pnpmEntry = process.env.npm_execpath;
+  if (pnpmEntry === undefined)
+    throw new Error(
+      "npm_execpath is unset — run this via `pnpm lint:peer-deps`.",
+    );
+
+  const result = spawnSync(process.execPath, [pnpmEntry, "peers", "check"], {
     cwd: ROOT,
     encoding: "utf8",
-    shell: process.platform === "win32",
   });
 
   if (result.error) throw result.error;
