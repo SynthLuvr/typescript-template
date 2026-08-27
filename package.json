@@ -17,7 +17,7 @@
   "devDependencies": {
     "@types/node": "^26.2.0",
     "@vitest/coverage-v8": "^4.1.11",
-    "ts-canon": "github:SynthLuvr/ts-canon#ef074c9c9ed18706c7bd2ef7bb3d1d0de8a71111",
+    "ts-canon": "github:SynthLuvr/ts-canon#2f1fa25c3c0d48d36a24010aa3ac426bb1677c4a",
     "typescript": "^7.0.2",
     "vitest": "^4.1.11"
   }

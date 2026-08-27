@@ -15,8 +15,8 @@ importers:
         specifier: ^4.1.11
         version: 4.1.11(vitest@4.1.11)
       ts-canon:
-        specifier: github:SynthLuvr/ts-canon#ef074c9c9ed18706c7bd2ef7bb3d1d0de8a71111
-        version: https://codeload.github.com/SynthLuvr/ts-canon/tar.gz/ef074c9c9ed18706c7bd2ef7bb3d1d0de8a71111
+        specifier: github:SynthLuvr/ts-canon#2f1fa25c3c0d48d36a24010aa3ac426bb1677c4a
+        version: https://codeload.github.com/SynthLuvr/ts-canon/tar.gz/2f1fa25c3c0d48d36a24010aa3ac426bb1677c4a
       typescript:
         specifier: ^7.0.2
         version: 7.0.2
@@ -1102,8 +1102,8 @@ packages:
     resolution: {integrity: sha512-yau8yJdTt989Mm0Bd/236QnzEiPf2xLLTqUZRUJOo/3CB078LSwzei343DgtJVmfJKJE3TMINY1u42SQsP6mXw==}
     engines: {node: '>=14.0.0'}
 
-  ts-canon@https://codeload.github.com/SynthLuvr/ts-canon/tar.gz/ef074c9c9ed18706c7bd2ef7bb3d1d0de8a71111:
-    resolution: {gitHosted: true, integrity: sha512-2UDzaOmQzsZxk/fVzXUfX2cCtXRvl7mVUCLvGeLEOYq+6LumMNWUU/oLOexdamF7lgk+g01qg7ZRgl8oBn4xTg==, tarball: https://codeload.github.com/SynthLuvr/ts-canon/tar.gz/ef074c9c9ed18706c7bd2ef7bb3d1d0de8a71111}
+  ts-canon@https://codeload.github.com/SynthLuvr/ts-canon/tar.gz/2f1fa25c3c0d48d36a24010aa3ac426bb1677c4a:
+    resolution: {gitHosted: true, integrity: sha512-hVcu9JSJ09Uyux0cnyfBjF1cI3CvExk0SWle8sYzTjoDkkMIdMRN10y+V02xT0DP/WzS2pq13oPfOwvAunuMHQ==, tarball: https://codeload.github.com/SynthLuvr/ts-canon/tar.gz/2f1fa25c3c0d48d36a24010aa3ac426bb1677c4a}
     version: 0.1.0
     engines: {node: '>=24'}
     hasBin: true
@@ -1980,7 +1980,7 @@ snapshots:
 
   tinyrainbow@3.1.1: {}
 
-  ts-canon@https://codeload.github.com/SynthLuvr/ts-canon/tar.gz/ef074c9c9ed18706c7bd2ef7bb3d1d0de8a71111:
+  ts-canon@https://codeload.github.com/SynthLuvr/ts-canon/tar.gz/2f1fa25c3c0d48d36a24010aa3ac426bb1677c4a:
     dependencies:
       '@ast-grep/cli': 0.45.2
       '@biomejs/biome': 2.5.10
