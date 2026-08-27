@@ -8,39 +8,15 @@ importers:
 
   .:
     devDependencies:
-      '@ast-grep/cli':
-        specifier: ^0.45.2
-        version: 0.45.2
-      '@ast-grep/cli-linux-x64-gnu':
-        specifier: ^0.45.2
-        version: 0.45.2
-      '@biomejs/biome':
-        specifier: ^2.5.10
-        version: 2.5.10
       '@types/node':
         specifier: ^26.2.0
         version: 26.3.0
       '@vitest/coverage-v8':
         specifier: ^4.1.11
         version: 4.1.11(vitest@4.1.11)
-      convert-to-arrow:
-        specifier: ^1.1.4
-        version: 1.1.4
-      jscpd:
-        specifier: ^5.0.16
-        version: 5.0.16
-      npm-run-all2:
-        specifier: ^9.0.3
-        version: 9.0.3
-      oxlint:
-        specifier: ^1.80.0
-        version: 1.80.0(oxlint-tsgolint@7.0.2001)
-      oxlint-tsgolint:
-        specifier: ^7.0.2001
-        version: 7.0.2001
-      tsx:
-        specifier: ^4.23.12
-        version: 4.23.12
+      ts-canon:
+        specifier: github:SynthLuvr/ts-canon#ef074c9c9ed18706c7bd2ef7bb3d1d0de8a71111
+        version: https://codeload.github.com/SynthLuvr/ts-canon/tar.gz/ef074c9c9ed18706c7bd2ef7bb3d1d0de8a71111
       typescript:
         specifier: ^7.0.2
         version: 7.0.2
@@ -74,6 +50,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@ast-grep/cli-win32-arm64-msvc@0.45.2':
     resolution: {integrity: sha512-wzlAX2K9255DNrHMpK9EpM+61ITYpTL14P47eZ4or2jYGUpB0bl1r7FjTC+eDXcwHLJozvu1b6f42iy0505JvA==}
@@ -1125,6 +1102,12 @@ packages:
     resolution: {integrity: sha512-yau8yJdTt989Mm0Bd/236QnzEiPf2xLLTqUZRUJOo/3CB078LSwzei343DgtJVmfJKJE3TMINY1u42SQsP6mXw==}
     engines: {node: '>=14.0.0'}
 
+  ts-canon@https://codeload.github.com/SynthLuvr/ts-canon/tar.gz/ef074c9c9ed18706c7bd2ef7bb3d1d0de8a71111:
+    resolution: {gitHosted: true, integrity: sha512-2UDzaOmQzsZxk/fVzXUfX2cCtXRvl7mVUCLvGeLEOYq+6LumMNWUU/oLOexdamF7lgk+g01qg7ZRgl8oBn4xTg==, tarball: https://codeload.github.com/SynthLuvr/ts-canon/tar.gz/ef074c9c9ed18706c7bd2ef7bb3d1d0de8a71111}
+    version: 0.1.0
+    engines: {node: '>=24'}
+    hasBin: true
+
   ts-morph@28.0.0:
     resolution: {integrity: sha512-Wp3tnZ2bzwxyTZMtgWVzXDfm7lB1Drz+y9DmmYH/L702PQhPyVrp3pkou3yIz4qjS14GY9kcpmLiOOMvl8oG1g==}
 
@@ -1251,7 +1234,8 @@ snapshots:
   '@ast-grep/cli-linux-arm64-gnu@0.45.2':
     optional: true
 
-  '@ast-grep/cli-linux-x64-gnu@0.45.2': {}
+  '@ast-grep/cli-linux-x64-gnu@0.45.2':
+    optional: true
 
   '@ast-grep/cli-win32-arm64-msvc@0.45.2':
     optional: true
@@ -1995,6 +1979,19 @@ snapshots:
       picomatch: 4.0.7
 
   tinyrainbow@3.1.1: {}
+
+  ts-canon@https://codeload.github.com/SynthLuvr/ts-canon/tar.gz/ef074c9c9ed18706c7bd2ef7bb3d1d0de8a71111:
+    dependencies:
+      '@ast-grep/cli': 0.45.2
+      '@biomejs/biome': 2.5.10
+      convert-to-arrow: 1.1.4
+      jscpd: 5.0.16
+      npm-run-all2: 9.0.3
+      oxlint: 1.80.0(oxlint-tsgolint@7.0.2001)
+      oxlint-tsgolint: 7.0.2001
+      tsx: 4.23.12
+    transitivePeerDependencies:
+      - vite-plus
 
   ts-morph@28.0.0:
     dependencies:
