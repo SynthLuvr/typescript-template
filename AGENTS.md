@@ -35,9 +35,9 @@ convert-to-arrow, jscpd, and the pandoc/peer-deps/audit helpers.
 - `pnpm exec ts-canon doctor` diagnoses toolchain/environment problems.
 - Markdown files must be byte-identical to `pandoc --eol=lf -t gfm`
   output; fix drift with `pnpm format`.
-- Tool, rule, and preset changes belong in ts-canon — bump the pinned
-  commit in `package.json` to pick them up. Do not add per-step tool
-  scripts back here.
+- Tool, rule, and preset changes belong in ts-canon — bump its version
+  in `package.json` to pick them up. Do not add per-step tool scripts
+  back here.
 
 ## Coding Conventions (Enforced)
 
