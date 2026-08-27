@@ -20,10 +20,9 @@ const SKIP_PARTS = new Set(["node_modules", ".git"]);
 
 const findMarkdown = (dir: string, acc: string[] = []): string[] => {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
-    if (SKIP_PARTS.has(entry.name)) continue;
-    // Skip symbolic links so pnpm's workspace dependency links can never
-    // form a recursive cycle (which would loop forever here).
-    if (entry.isSymbolicLink()) continue;
+    // Symlinks are skipped: pnpm workspace links can form cycles that
+    // would loop this walk forever.
+    if (SKIP_PARTS.has(entry.name) || entry.isSymbolicLink()) continue;
     const full = join(dir, entry.name);
     if (entry.isDirectory()) findMarkdown(full, acc);
     else if (entry.isFile() && entry.name.endsWith(".md")) acc.push(full);
