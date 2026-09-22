@@ -3,7 +3,7 @@
   "private": true,
   "description": "A TypeScript project template with a complete build, format, lint, and test toolchain",
   "type": "module",
-  "packageManager": "pnpm@12.3.4",
+  "packageManager": "pnpm@12.5.1",
   "engines": {
     "node": "==26"
   },
@@ -15,10 +15,10 @@
     "test:watch": "vitest"
   },
   "devDependencies": {
-    "@types/node": "^26.4.1",
-    "@vitest/coverage-v8": "^5.0.0",
-    "ts-canon": "^0.1.5",
+    "@types/node": "^26.6.2",
+    "@vitest/coverage-v8": "^5.0.1",
+    "ts-canon": "^0.2.0",
     "typescript": "^7.0.2",
-    "vitest": "^5.0.0"
+    "vitest": "^5.0.1"
   }
 }
