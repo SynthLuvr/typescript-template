@@ -1,4 +1,6 @@
 allowBuilds:
-  '@ast-grep/cli': true
+  "@ast-grep/cli": true
   esbuild: true
+minimumReleaseAgeExclude:
+  - ts-canon@0.3.2
 scriptShell: bash
